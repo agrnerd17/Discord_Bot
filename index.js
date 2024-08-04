@@ -4,7 +4,7 @@ const db = require('./database');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
-const TOKEN = 'TOKEN_KEY';
+const TOKEN = 'XXX';
 
 //Specific message pattern to match
 const SCAM_MESSAGE_PATTERN = /Hi everyone! I'm looking to sell my tickets to Olivia Rodrigo concert at The Kia Forum-Inglewood,CA\nWed , Aug 14 2024-7:30\nHMU if you're interested \(209\) 528-8255/i;
@@ -47,7 +47,7 @@ client.on('messageCreate', message => {
                         console.error('Failed to ban member', err);
                     });
                 } else {
-                    db.run('UPDATE users SET usernames = ? WHERE user_id = ?', [username.join(','), userId]);
+                    db.run('UPDATE users SET usernames = ? WHERE user_id = ?', [usernames.join(','), userId]);
                 }
             } else {
                 db.run('INSERT INTO users (user_id, usernames) VALUES (?, ?)', [userId, username]);
